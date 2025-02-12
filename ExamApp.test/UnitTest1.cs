@@ -6,7 +6,6 @@ namespace ExamApp.test
 {
     public class UnitTest1
     {
-        // Test size one grid
         [Fact]
         public void TestPlaceNQueen_1x1Grid()
         {
@@ -15,11 +14,21 @@ namespace ExamApp.test
             Assert.Equal('#', program.grid[0, 0]);
         }
 
-        // Test size two grid
+        [Fact]
+        public void TestPlaceNQueen_2x2Grid_ThrowsInvalidOperationException()
+        {
+            Program program = new Program(2);
+            Assert.Throws<InvalidOperationException>(() => program.PlaceNQueen());
+        }
 
-        //Test size three grid
+        [Fact]
+        public void TestPlaceNQueen_3x3Grid_ThrowsInvalidOperationException()
+        {
+            Program program = new Program(3);
+            Assert.Throws<InvalidOperationException>(() => program.PlaceNQueen());
+        }
 
-        //Test size four grid
-        
+        // Test for 4x4 grid
+
     }
 }

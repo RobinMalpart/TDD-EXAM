@@ -10,8 +10,15 @@ namespace ExamApp
         static void Main(string[] args)
         {
             Program program = new Program(10);
-            program.PlaceNQueen();
-            program.DisplayGrid();
+            try
+            {
+                program.PlaceNQueen();
+                program.DisplayGrid();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public Program(int n)
@@ -37,8 +44,31 @@ namespace ExamApp
             if (size == 1)
             {
                 grid[0, 0] = '#';
+                return;
             }
-        }        
+
+            if (size == 2 || size == 3)
+            {
+                throw new InvalidOperationException($"No solution exists for a {size}x{size} grid.");
+            }
+
+        }
+
+        public int CountQueen()
+        {
+            int count = 0;
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (grid[i, j] == '#')
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
 
         public void DisplayGrid()
         {
