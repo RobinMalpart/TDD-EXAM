@@ -1,0 +1,52 @@
+# Build results
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.log
+
+# User-specific files
+*.user
+*.vs/
+.vscode/
+
+# Visual Studio Code files
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+
+# DotNet artifacts
+project.lock.json
+project.fragment.lock.json
+
+# Rider and JetBrains
+.idea/
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.sln.cache
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Coverage and test results
+TestResults/
+*.trx
+*.coverage
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# Packages and dependencies
+*.nupkg
+*.snupkg
+packages/
