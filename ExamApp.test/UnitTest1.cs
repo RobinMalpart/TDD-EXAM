@@ -78,5 +78,50 @@ namespace ExamApp.test
             }
         }
 
+        [Fact]
+        public void TestPlaceNQueen_4x4Grid_VerifyQueensAreNotOnSameDiagonal()
+        {
+            Program program = new Program(4);
+            program.PlaceNQueen();
+
+            for (int row = 0; row < 4; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    if (program.grid[row, col] == '#')
+                    {
+                        Assert.True(AreDiagonalsSafe(program.grid, row, col), $"Queen at ({row}, {col}) has a conflict on a diagonal.");
+                    }
+                }
+            }
+        }
+
+        private bool AreDiagonalsSafe(char[,] grid, int row, int col)
+        {
+            int size = grid.GetLength(0);
+
+            // Check upper-left diagonal
+            for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--)
+                if (grid[i, j] == '#')
+                    return false;
+
+            // Check upper-right diagonal
+            for (int i = row - 1, j = col + 1; i >= 0 && j < size; i--, j++)
+                if (grid[i, j] == '#')
+                    return false;
+
+            // Check lower-left diagonal
+            for (int i = row + 1, j = col - 1; i < size && j >= 0; i++, j--)
+                if (grid[i, j] == '#')
+                    return false;
+
+            // Check lower-right diagonal
+            for (int i = row + 1, j = col + 1; i < size && j < size; i++, j++)
+                if (grid[i, j] == '#')
+                    return false;
+
+            return true;
+        }
+
     }
 }

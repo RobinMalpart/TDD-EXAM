@@ -9,7 +9,7 @@ namespace ExamApp
 
         static void Main(string[] args)
         {
-            Program program = new Program(10);
+            Program program = new Program(4);
             try
             {
                 program.PlaceNQueen();
@@ -46,10 +46,44 @@ namespace ExamApp
                 throw new InvalidOperationException($"No solution exists for a {size}x{size} grid.");
             }
 
-            for (int row = 0; row < size; row++)
+            SolveNQueen(0);
+        }
+
+        private bool SolveNQueen(int row)
+        {
+            if (row >= size)
+                return true;
+
+            for (int col = 0; col < size; col++)
             {
-                grid[row, row] = '#';
+                if (IsSafe(row, col))
+                {
+                    grid[row, col] = '#';
+                    if (SolveNQueen(row + 1))
+                        return true;  
+                    grid[row, col] = '0';
+                }
             }
+            return false;
+        }
+
+        private bool IsSafe(int row, int col)
+        {
+            for (int i = 0; i < row; i++)
+                if (grid[i, col] == '#')
+                    return false;
+
+            //=====================Check diagonals========================
+            for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--)
+                if (grid[i, j] == '#')
+                    return false;
+
+
+            for (int i = row - 1, j = col + 1; i >= 0 && j < size; i--, j++)
+                if (grid[i, j] == '#')
+                    return false;
+
+            return true;
         }
 
         public int CountQueen()
