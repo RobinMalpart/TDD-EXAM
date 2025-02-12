@@ -37,5 +37,46 @@ namespace ExamApp.test
             int queenCount = program.CountQueen();
             Assert.Equal(4, queenCount);
         }
+
+        [Fact]
+        public void TestPlaceNQueen_4x4Grid_VerifyQueensAreNotOnSameRow()
+        {
+            Program program = new Program(4);
+            program.PlaceNQueen();
+
+            for (int row = 0; row < 4; row++)
+            {
+                int queenCountInRow = 0;
+                for (int col = 0; col < 4; col++)
+                {
+                    if (program.grid[row, col] == '#')
+                    {
+                        queenCountInRow++;
+                    }
+                }
+                Assert.True(queenCountInRow <= 1, $"More than one queen found on row {row}");
+            }
+        }
+
+        [Fact]
+        public void TestPlaceNQueen_4x4Grid_VerifyQueensAreNotOnSameColumn()
+        {
+            Program program = new Program(4);
+            program.PlaceNQueen();
+
+            for (int col = 0; col < 4; col++)
+            {
+                int queenCountInColumn = 0;
+                for (int row = 0; row < 4; row++)
+                {
+                    if (program.grid[row, col] == '#')
+                    {
+                        queenCountInColumn++;
+                    }
+                }
+                Assert.True(queenCountInColumn <= 1, $"More than one queen found in column {col}");
+            }
+        }
+
     }
 }

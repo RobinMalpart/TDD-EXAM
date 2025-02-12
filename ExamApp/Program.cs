@@ -46,17 +46,10 @@ namespace ExamApp
                 throw new InvalidOperationException($"No solution exists for a {size}x{size} grid.");
             }
 
-            int queensPlaced = 0;
-
-            for (int row = 0; row < size && queensPlaced < size; row++)
+            for (int row = 0; row < size; row++)
             {
-                for (int col = 0; col < size && queensPlaced < size; col++)
-                {
-                    grid[row, col] = '#';  // Place une reine
-                    queensPlaced++;
-                }
+                grid[row, row] = '#';
             }
-
         }
 
         public int CountQueen()
