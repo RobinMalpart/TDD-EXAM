@@ -6,6 +6,9 @@ namespace ExamApp.test
 {
     public class UnitTest1
     {
+
+        //====================Smaller grid Tests=======================
+
         [Fact]
         public void TestPlaceNQueen_1x1Grid()
         {
@@ -28,7 +31,7 @@ namespace ExamApp.test
             Assert.Throws<InvalidOperationException>(() => program.PlaceNQueen());
         }
 
-        // ==================TESTS pour 4x4======================
+        // ==================4x4 Grid Test======================
         [Fact]
         public void TestPlaceNQueen_4x4Grid_VerifyQueensNumber()
         {
@@ -123,5 +126,38 @@ namespace ExamApp.test
             return true;
         }
 
+
+        //====================Larger Grid Tests=======================
+        [Fact]
+        public void TestPlaceNQueen_8x8Grid()
+        {
+            Program program = new Program(8);
+            program.PlaceNQueen();
+            
+            int queenCount = program.CountQueen();
+            Assert.Equal(8, queenCount);
+
+            for (int row = 0; row < 8; row++)
+            {
+                int queenCountInRow = 0;
+                for (int col = 0; col < 8; col++)
+                {
+                    if (program.grid[row, col] == '#')
+                        queenCountInRow++;
+                }
+                Assert.True(queenCountInRow <= 1, $"More than one queen found in row {row}");
+            }
+
+            for (int row = 0; row < 8; row++)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    if (program.grid[row, col] == '#')
+                    {
+                        Assert.True(AreDiagonalsSafe(program.grid, row, col), $"Queen at ({row}, {col}) has a conflict on a diagonal.");
+                    }
+                }
+            }
+        }
     }
 }
