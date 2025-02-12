@@ -102,6 +102,10 @@ namespace ExamApp
             return count;
         }
 
+        public void PlaceNQueenWithPairConflict()
+        {
+        }
+
         public void DisplayGrid()
         {
             for (int i = 0; i < size; i++)
