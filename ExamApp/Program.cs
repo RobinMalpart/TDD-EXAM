@@ -104,6 +104,10 @@ namespace ExamApp
 
         public void PlaceNQueenWithPairConflict()
         {
+            for (int row = 0; row < size; row++)
+            {
+                grid[row, row] = '#';  // Place une reine sur la diagonale principale
+            }
         }
 
         public void DisplayGrid()
