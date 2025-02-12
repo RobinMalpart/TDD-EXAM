@@ -4,7 +4,7 @@ using ExamApp;
 
 namespace ExamApp.test
 {
-    public class UnitTest1
+    public class PlaceQueens_test
     {
 
         //====================Smaller grid Tests=======================

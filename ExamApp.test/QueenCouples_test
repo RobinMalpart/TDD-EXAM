@@ -1,0 +1,11 @@
+using System;
+using Xunit;
+using ExamApp;
+
+namespace ExamApp.test
+{
+    public class PlaceQueens_test
+    {
+        
+    }
+}
