@@ -28,7 +28,14 @@ namespace ExamApp.test
             Assert.Throws<InvalidOperationException>(() => program.PlaceNQueen());
         }
 
-        // Test for 4x4 grid
-
+        // ==================TESTS pour 4x4======================
+        [Fact]
+        public void TestPlaceNQueen_4x4Grid_VerifyQueensNumber()
+        {
+            Program program = new Program(4);
+            program.PlaceNQueen();
+            int queenCount = program.CountQueen();
+            Assert.Equal(4, queenCount);
+        }
     }
 }

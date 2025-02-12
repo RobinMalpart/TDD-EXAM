@@ -41,15 +41,20 @@ namespace ExamApp
 
         public void PlaceNQueen()
         {
-            if (size == 1)
-            {
-                grid[0, 0] = '#';
-                return;
-            }
-
             if (size == 2 || size == 3)
             {
                 throw new InvalidOperationException($"No solution exists for a {size}x{size} grid.");
+            }
+
+            int queensPlaced = 0;
+
+            for (int row = 0; row < size && queensPlaced < size; row++)
+            {
+                for (int col = 0; col < size && queensPlaced < size; col++)
+                {
+                    grid[row, col] = '#';  // Place une reine
+                    queensPlaced++;
+                }
             }
 
         }
