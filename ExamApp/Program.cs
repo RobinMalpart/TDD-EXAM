@@ -2,10 +2,10 @@
 
 namespace ExamApp
 {
-    class Program
+    public class Program
     {
-        private char[,] grid;
-        private int size;
+        public char[,] grid;
+        public int size;
 
         static void Main(string[] args)
         {
